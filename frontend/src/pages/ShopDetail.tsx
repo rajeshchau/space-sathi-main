@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const shopData: Record<string, any> = {
   "1": {
@@ -69,7 +70,11 @@ const ShopDetail = () => {
             </div>
             <div className="absolute bottom-4 right-4 flex gap-2">
               <span className="px-3 py-1 rounded-full bg-card/80 backdrop-blur-sm text-sm text-foreground flex items-center gap-1"><Eye className="w-3.5 h-3.5" /> {shop.views} views</span>
-              <span className="px-3 py-1 rounded-full bg-card/80 backdrop-blur-sm text-sm text-foreground">{currentImg + 1}/{shop.images.length}</span>
+              {shop.images.length > 1 && (
+                <button className="px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm text-sm text-primary-foreground font-medium hover:bg-primary transition-colors">
+                  View All {shop.images.length > 1 ? `(${shop.images.length})` : ""} Images
+                </button>
+              )}
             </div>
             {/* Thumbnails */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
@@ -176,7 +181,7 @@ const ShopDetail = () => {
                 <div className="space-y-2.5">
                   <Button variant="cta" className="w-full gap-2"><Phone className="w-4 h-4" /> Contact Owner</Button>
                   <Button variant="hero-outline" className="w-full gap-2"><CalendarCheck className="w-4 h-4" /> Schedule Visit</Button>
-                  <Button variant="outline" className="w-full gap-2 text-primary border-primary/20">💬 WhatsApp</Button>
+                  <WhatsAppButton phoneNumber={shop.owner.phone.replace(/\D/g, "")} message={`Hi ${shop.owner.name}, I'm interested in your shop: ${shop.title} at ${shop.location}`} />
                 </div>
                 <div className="mt-4 p-3 rounded-xl bg-primary/5 border border-primary/10">
                   <p className="text-xs text-muted-foreground text-center">🔒 Your contact details are protected</p>

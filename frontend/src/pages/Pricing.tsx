@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, Star, Crown, Zap, ArrowRight } from "lucide-react";
+import { Check, Star, Crown, Zap, ArrowRight, ShieldCheck, Camera, FileText, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -23,10 +23,10 @@ const plans = [
 ];
 
 const addons = [
-  { name: "Verified Badge", price: "₹299", desc: "Build trust with a verified listing badge." },
-  { name: "Photography Service", price: "₹1,999", desc: "Professional photos of your shop." },
-  { name: "Legal Agreement", price: "₹499", desc: "Ready-to-use rental agreement template." },
-  { name: "Lead Package", price: "₹100/lead", desc: "Pay per genuine renter inquiry." },
+  { name: "Verified Badge", price: "₹299", desc: "Build trust with a verified listing badge.", icon: ShieldCheck },
+  { name: "Photography Service", price: "₹1,999", desc: "Professional photos of your shop.", icon: Camera },
+  { name: "Legal Agreement", price: "₹499", desc: "Ready-to-use rental agreement template.", icon: FileText },
+  { name: "Lead Package", price: "₹100/lead", desc: "Pay per genuine renter inquiry.", icon: Users },
 ];
 
 const Pricing = () => (
@@ -83,17 +83,22 @@ const Pricing = () => (
 
         {/* Add-ons */}
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <h2 className="text-2xl font-heading font-bold text-foreground text-center mb-10">Add-on Services</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold text-center mb-6 text-foreground">Add-on Services</h2>
           <div className="grid sm:grid-cols-2 gap-5">
             {addons.map((addon) => (
-              <div key={addon.name} className="bg-card rounded-2xl p-6 shadow-card flex items-center justify-between border border-border/20 hover:shadow-card-hover transition-all duration-300">
-                <div>
-                  <h4 className="font-heading font-bold text-foreground">{addon.name}</h4>
-                  <p className="text-sm text-muted-foreground mt-1">{addon.desc}</p>
+              <div key={addon.name} className="rounded-xl border bg-card shadow-sm hover:shadow-lg transition-all duration-300 p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 min-h-[164px]">
+                <div className="flex gap-4 items-start">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20 flex-shrink-0">
+                    <addon.icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-heading font-bold text-foreground">{addon.name}</h4>
+                    <p className="text-sm text-muted-foreground mt-1">{addon.desc}</p>
+                  </div>
                 </div>
-                <div className="text-right flex-shrink-0 ml-6">
+                <div className="text-left sm:text-right w-full sm:w-auto">
                   <p className="stat-number text-lg text-foreground">{addon.price}</p>
-                  <Button variant="ghost" size="sm" className="text-primary mt-1 font-semibold">Add →</Button>
+                  <Button variant="ghost" size="sm" className="text-primary font-semibold hover:scale-105 transition">Add →</Button>
                 </div>
               </div>
             ))}

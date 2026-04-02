@@ -89,8 +89,10 @@ const Navbar = () => {
             </Button>
           </Link>
           <Link to="/create-listing">
-            <Button variant="cta" size="sm" className="gap-1.5">
-              List Your Shop <ChevronRight className="w-3.5 h-3.5" />
+            <Button variant="cta" size="sm" className="gap-2 px-4 md:px-5 py-2 md:py-2.5 h-auto font-medium whitespace-nowrap">
+              <span className="hidden sm:inline">List Your Shop</span>
+              <span className="sm:hidden">List Shop</span>
+              <ChevronRight className="w-3.5 h-3.5" />
             </Button>
           </Link>
         </div>
