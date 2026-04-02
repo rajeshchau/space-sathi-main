@@ -5,17 +5,17 @@ const Footer = () => (
   <footer className="bg-foreground text-card relative overflow-hidden">
     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-    <div className="container py-20">
-      <div className="grid grid-cols-2 md:grid-cols-12 gap-10 mb-16">
+    <div className="container py-12 md:py-16 space-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-12 gap-8 mb-6">
         {/* Brand */}
         <div className="col-span-2 md:col-span-4">
-          <Link to="/" className="flex items-center gap-2.5 mb-6">
+          <Link to="/" className="flex items-center gap-2.5 mb-4">
             <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-lg">
               <Store className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="font-heading font-bold text-xl">ShopLease</span>
           </Link>
-          <p className="text-sm text-card/40 max-w-xs leading-relaxed mb-6">
+          <p className="text-sm text-card/40 max-w-xs leading-relaxed mb-4">
             India's smartest marketplace for renting commercial shops. No brokers, no hassle — just smart connections.
           </p>
           <div className="flex flex-col gap-3">
@@ -76,7 +76,7 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="border-t border-card/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="border-t border-card/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-sm text-card/25">© 2026 ShopLease. All rights reserved.</p>
         <div className="flex gap-8">
           <a href="#" className="text-card/25 hover:text-card transition-colors text-sm">Instagram</a>
