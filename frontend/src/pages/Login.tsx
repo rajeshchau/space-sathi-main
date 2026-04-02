@@ -15,7 +15,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const redirectTo = (location.state as any)?.from || "/";
+  const redirectTo = (location.state as { from?: { pathname: string } })?.from?.pathname || "/";
 
   // If already logged in, redirect
   if (isAuthenticated) {
