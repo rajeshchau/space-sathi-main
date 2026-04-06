@@ -3,6 +3,8 @@ import { MapPin, Maximize, BadgeCheck, Crown, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
+const container = "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8";
+
 const shops = [
   {
     id: 1,
@@ -137,30 +139,31 @@ const ShopCard = ({ shop, index }: { shop: typeof shops[0]; index: number }) => 
 );
 
 const FeaturedShops = () => (
-  <section id="featured" className="py-24">
-    <div className="container">
+  <section id="featured" className="py-12 md:py-16">
+    <div className={`${container} space-y-8`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="flex flex-col md:flex-row md:items-end justify-between mb-12"
+        className="text-center"
       >
-        <div>
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider mb-4">Explore</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
-            Featured Shops
-          </h2>
-          <p className="text-muted-foreground mt-3 max-w-md">Hand-picked commercial spaces across India's top cities.</p>
-        </div>
-        <Link to="/browse">
-          <Button variant="hero-outline" className="mt-4 md:mt-0">View All Shops</Button>
-        </Link>
+        <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold uppercase tracking-wider mb-6">Explore</span>
+        <h2 className="text-2xl md:text-3xl font-semibold text-center mb-6 text-foreground">
+          Featured Shops
+        </h2>
+        <p className="text-muted-foreground max-w-md mx-auto">Hand-picked commercial spaces across India's top cities.</p>
       </motion.div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {shops.map((shop, i) => (
           <ShopCard key={shop.id} shop={shop} index={i} />
         ))}
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <Link to="/browse" className="inline-flex">
+          <Button variant="hero-outline" className="hover:scale-105 transition">View All Shops</Button>
+        </Link>
       </div>
     </div>
   </section>

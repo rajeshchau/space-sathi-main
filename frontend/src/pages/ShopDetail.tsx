@@ -5,8 +5,32 @@ import { Button } from "@/components/ui/button";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+interface Shop {
+  title: string;
+  location: string;
+  price: string;
+  deposit: string;
+  size: string;
+  floor: string;
+  type: string;
+  images: string[];
+  description: string;
+  amenities: string[];
+  suitableFor: string[];
+  owner: {
+    name: string;
+    phone: string;
+    avatar: string;
+    listings: number;
+    responseTime: string;
+  };
+  verified: boolean;
+  premium: boolean;
+  views: number;
+}
 
-const shopData: Record<string, any> = {
+const shopData: Record<string, Shop> = {
   "1": {
     title: "Prime Corner Shop in Navrangpura", location: "Navrangpura, Ahmedabad, Gujarat", price: "₹25,000", deposit: "₹50,000", size: "450 sq ft", floor: "Ground Floor", type: "Corner Shop",
     images: [
@@ -22,7 +46,7 @@ const shopData: Record<string, any> = {
   },
 };
 
-const defaultShop = {
+const defaultShop: Shop = {
   title: "Commercial Shop Space", location: "India", price: "₹20,000", deposit: "₹40,000", size: "400 sq ft", floor: "Ground Floor", type: "Shop",
   images: ["https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&h=500&fit=crop", "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d?w=900&h=500&fit=crop"],
   description: "A well-located commercial shop space available for rent.", amenities: ["Parking", "Electricity", "Water Supply"],
@@ -69,7 +93,11 @@ const ShopDetail = () => {
             </div>
             <div className="absolute bottom-4 right-4 flex gap-2">
               <span className="px-3 py-1 rounded-full bg-card/80 backdrop-blur-sm text-sm text-foreground flex items-center gap-1"><Eye className="w-3.5 h-3.5" /> {shop.views} views</span>
-              <span className="px-3 py-1 rounded-full bg-card/80 backdrop-blur-sm text-sm text-foreground">{currentImg + 1}/{shop.images.length}</span>
+              {shop.images.length > 1 && (
+                <button className="px-3 py-1 rounded-full bg-primary/90 backdrop-blur-sm text-sm text-primary-foreground font-medium hover:bg-primary transition-colors">
+                  View All {shop.images.length > 1 ? `(${shop.images.length})` : ""} Images
+                </button>
+              )}
             </div>
             {/* Thumbnails */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
@@ -176,7 +204,7 @@ const ShopDetail = () => {
                 <div className="space-y-2.5">
                   <Button variant="cta" className="w-full gap-2"><Phone className="w-4 h-4" /> Contact Owner</Button>
                   <Button variant="hero-outline" className="w-full gap-2"><CalendarCheck className="w-4 h-4" /> Schedule Visit</Button>
-                  <Button variant="outline" className="w-full gap-2 text-primary border-primary/20">💬 WhatsApp</Button>
+                  <WhatsAppButton phoneNumber={shop.owner.phone.replace(/\D/g, "")} message={`Hi ${shop.owner.name}, I'm interested in your shop: ${shop.title} at ${shop.location}`} />
                 </div>
                 <div className="mt-4 p-3 rounded-xl bg-primary/5 border border-primary/10">
                   <p className="text-xs text-muted-foreground text-center">🔒 Your contact details are protected</p>

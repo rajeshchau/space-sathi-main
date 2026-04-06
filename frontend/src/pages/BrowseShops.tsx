@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, MapPin, Maximize, BadgeCheck, Crown, SlidersHorizontal, Heart, ArrowUpDown } from "lucide-react";
+import { Search, MapPin, Maximize, BadgeCheck, Crown, SlidersHorizontal, Heart, ArrowUpDown, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -63,29 +63,35 @@ const BrowseShops = () => {
                   />
                 </div>
                 <div className="flex gap-3">
-                  <select
-                    value={cityFilter}
-                    onChange={(e) => setCityFilter(e.target.value)}
-                    className="input-premium min-w-[150px] py-3"
-                  >
-                    <option value="">All Cities</option>
-                    <option value="Ahmedabad">Ahmedabad</option>
-                    <option value="Mumbai">Mumbai</option>
-                    <option value="Delhi">Delhi</option>
-                    <option value="Bangalore">Bangalore</option>
-                    <option value="Surat">Surat</option>
-                  </select>
-                  <select
-                    value={typeFilter}
-                    onChange={(e) => setTypeFilter(e.target.value)}
-                    className="input-premium min-w-[150px] py-3"
-                  >
-                    <option value="">All Types</option>
-                    <option value="Corner Shop">Corner Shop</option>
-                    <option value="Mall Shop">Mall Shop</option>
-                    <option value="Market Shop">Market Shop</option>
-                    <option value="Showroom">Showroom</option>
-                  </select>
+                  <div className="relative min-w-[150px]">
+                    <select
+                      value={cityFilter}
+                      onChange={(e) => setCityFilter(e.target.value)}
+                      className="w-full appearance-none px-4 py-2 border rounded-lg bg-background text-sm text-foreground border-border focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    >
+                      <option value="">All Cities</option>
+                      <option value="Ahmedabad">Ahmedabad</option>
+                      <option value="Mumbai">Mumbai</option>
+                      <option value="Delhi">Delhi</option>
+                      <option value="Bangalore">Bangalore</option>
+                      <option value="Surat">Surat</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                  </div>
+                  <div className="relative min-w-[150px]">
+                    <select
+                      value={typeFilter}
+                      onChange={(e) => setTypeFilter(e.target.value)}
+                      className="w-full appearance-none px-4 py-2 border rounded-lg bg-background text-sm text-foreground border-border focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                    >
+                      <option value="">All Types</option>
+                      <option value="Corner Shop">Corner Shop</option>
+                      <option value="Mall Shop">Mall Shop</option>
+                      <option value="Market Shop">Market Shop</option>
+                      <option value="Showroom">Showroom</option>
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+                  </div>
                 </div>
               </div>
             </div>

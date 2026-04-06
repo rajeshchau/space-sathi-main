@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section id="hero-section" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero-section" className="relative min-h-screen py-12 md:py-16 flex items-center justify-center overflow-hidden">
       {/* Video Background */}
       <video
         autoPlay
@@ -30,14 +30,14 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 text-center px-6 max-w-[720px]"
+        className="relative z-10 text-center px-6 max-w-[720px] space-y-8"
       >
         {/* Tagline badge */}
         <motion.span
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 font-body text-[13px] font-medium tracking-[0.1em] uppercase text-white/85 mb-[18px]"
+          className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 font-body text-[13px] font-medium tracking-[0.1em] uppercase text-white/85"
         >
           Commercial Spaces Across India
         </motion.span>
@@ -47,7 +47,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="font-heading font-semibold text-[clamp(2.5rem,5.5vw,3.75rem)] leading-[1.1] tracking-[-0.02em] text-white mb-[22px]"
+          className="font-heading font-semibold text-[clamp(2.5rem,5.5vw,3.75rem)] leading-[1.1] tracking-[-0.02em] text-white mb-6"
         >
           Find the Perfect Shop for Your Business
         </motion.h1>
@@ -57,7 +57,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.7 }}
-          className="font-body text-[19px] font-normal leading-[1.6] text-white/90 max-w-[620px] mx-auto mb-8"
+          className="font-body text-[19px] font-normal leading-[1.6] text-white/90 max-w-[620px] mx-auto"
         >
           Discover verified commercial spaces across India or list your shop and connect with serious business owners looking for the perfect location.
         </motion.p>
@@ -67,7 +67,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-4 mb-6"
+          className="flex flex-wrap justify-center gap-4"
         >
           <Link to="/browse">
             <Button

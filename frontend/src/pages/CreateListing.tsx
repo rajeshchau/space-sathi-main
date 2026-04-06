@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Check, Store } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Store, FileText, MapPin, Camera, IndianRupee, Sparkles, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import ListingStepBasic from "@/components/listing/ListingStepBasic";
 import ListingStepLocation from "@/components/listing/ListingStepLocation";
@@ -47,13 +47,21 @@ const initialFormData: ListingFormData = {
   amenities: [],
 };
 
-const steps = [
-  { id: 1, label: "Basic Info", icon: "📋" },
-  { id: 2, label: "Location", icon: "📍" },
-  { id: 3, label: "Photos", icon: "📸" },
-  { id: 4, label: "Pricing", icon: "💰" },
-  { id: 5, label: "Amenities", icon: "✨" },
-  { id: 6, label: "Review", icon: "✅" },
+const formSteps = [
+  { id: 1, label: "Basic Info" },
+  { id: 2, label: "Location" },
+  { id: 3, label: "Photos" },
+  { id: 4, label: "Pricing" },
+  { id: 5, label: "Amenities" },
+  { id: 6, label: "Review" },
+];
+
+const stepperSteps = [
+  { id: 1, label: "Basic Info", icon: FileText },
+  { id: 2, label: "Location", icon: MapPin },
+  { id: 3, label: "Photos", icon: Camera },
+  { id: 4, label: "Pricing", icon: IndianRupee },
+  { id: 5, label: "Amenities", icon: Sparkles },
 ];
 
 const CreateListing = () => {
@@ -65,7 +73,7 @@ const CreateListing = () => {
   };
 
   const handleNext = () => {
-    if (currentStep < steps.length) setCurrentStep((s) => s + 1);
+    if (currentStep < formSteps.length) setCurrentStep((s) => s + 1);
   };
 
   const handleBack = () => {
@@ -121,27 +129,36 @@ const CreateListing = () => {
         </div>
 
         {/* Step indicator */}
-        <div className="flex items-center gap-1 mb-8 overflow-x-auto pb-2">
-          {steps.map((step, i) => (
-            <div key={step.id} className="flex items-center">
-              <button
-                onClick={() => step.id < currentStep && setCurrentStep(step.id)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
-                  step.id === currentStep
-                    ? "bg-primary text-primary-foreground"
-                    : step.id < currentStep
-                    ? "bg-primary/10 text-primary cursor-pointer"
-                    : "bg-muted text-muted-foreground"
-                }`}
-              >
-                <span>{step.id < currentStep ? "✓" : step.icon}</span>
-                <span className="hidden sm:inline">{step.label}</span>
-              </button>
-              {i < steps.length - 1 && (
-                <div className={`w-6 h-0.5 mx-1 ${step.id < currentStep ? "bg-primary" : "bg-border"}`} />
-              )}
+        <div className="mb-8 space-y-3">
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
+            {stepperSteps.map((step) => {
+              const Icon = step.icon;
+              const isActive = step.id === currentStep;
+              const isCompleted = step.id < currentStep;
+
+              return (
+                <button
+                  key={step.id}
+                  onClick={() => isCompleted && setCurrentStep(step.id)}
+                  className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium border transition-all duration-300 ${
+                    isActive
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : isCompleted
+                      ? "bg-green-100 text-green-600 border-green-200 hover:bg-green-200 cursor-pointer"
+                      : "bg-muted text-muted-foreground border-border"
+                  }`}
+                >
+                  {isCompleted ? <CheckCircle2 className="w-4 h-4" /> : <Icon className="w-4 h-4" />}
+                  <span>{step.label}</span>
+                </button>
+              );
+            })}
+          </div>
+          {currentStep === 6 && (
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium">
+              <CheckCircle2 className="w-4 h-4" /> Final Review
             </div>
-          ))}
+          )}
         </div>
 
         {/* Step content */}
@@ -168,7 +185,7 @@ const CreateListing = () => {
             <ArrowLeft className="w-4 h-4" /> Back
           </Button>
 
-          {currentStep < steps.length ? (
+          {currentStep < formSteps.length ? (
             <Button variant="cta" onClick={handleNext} className="gap-2">
               Next <ArrowRight className="w-4 h-4" />
             </Button>
